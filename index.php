@@ -6,6 +6,7 @@
     </head>
     <body>
         <p> Esto es una prueba Lotzo</P>
+        Otra prueba!!
         <?php
         // put your code here
         ?>
