@@ -7,6 +7,7 @@
     <body>
         <p> Esto es una prueba Lotzo</P>
         Otra prueba!!
+        La ultima prueba a ver si funk!!!
         <?php
         // put your code here
         ?>
