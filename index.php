@@ -12,7 +12,7 @@
         Que baras de esta cosa que no funk en la compu de Lotzo!!!
         <?php
         // put your code here
-        info();
+        info(); // No jugues de pichota!!!!
         ?>
     </body>
 </html>
