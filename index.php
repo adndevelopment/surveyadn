@@ -5,14 +5,13 @@
         <title></title>
     </head>
     <body>
-        <p> Esto es una prueba Lotzo</P>
-        Otra prueba!!
-        La ultima prueba a ver si funk!!!
-        
-        Que baras de esta cosa que no funk en la compu de Lotzo!!!
         <?php
         // put your code here
-        info(); // No jugues de pichota!!!!
+        //phpinfo();
+        
         ?>
+    <center>
+        <img src="img/uc.jpg" alt="Survey under construction"/>
+        </center>
     </body>
 </html>
