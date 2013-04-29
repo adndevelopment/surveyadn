@@ -8,6 +8,8 @@
         <p> Esto es una prueba Lotzo</P>
         Otra prueba!!
         La ultima prueba a ver si funk!!!
+        
+        Que baras de esta cosa que no funk en la compu de Lotzo!!!
         <?php
         // put your code here
         ?>
