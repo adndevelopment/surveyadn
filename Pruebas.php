@@ -16,7 +16,7 @@
         $row = $survey->surveyS('pruebaADN');
         $prueba = mysql_fetch_array($row);
         echo $prueba['idSurvey'];
-            
+        
         
         
         ?>
