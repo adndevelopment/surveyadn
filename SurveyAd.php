@@ -100,5 +100,36 @@ class SurveyAd {
             echo $e->getMessage();
         }
     }
+    
+    function getPosibleAnswer($_idQuestion, $_questionType)
+    {
+        try
+        {
+            if(trim($_questionType) == 'boolean')
+            {
+                $this->connectMysqlDataBase();
+                $res = mysql_query("call questionBoolS('$_idQuestion')", $this->dbhandle);
+                return $res;
+            }
+            else if(trim($_questionType) == 'multipleselection')
+            {
+                $this->connectMysqlDataBase();
+                $res = mysql_query("call questionMultipleSelectionS('$_idQuestion')", $this->dbhandle);
+                return $res;
+            }
+            else if(trim($_questionType) == 'range')
+            {
+                $this->connectMysqlDataBase();
+                $res = mysql_query("call questionRangeS('$_idQuestion')", $this->dbhandle);
+                return $res;
+            }
+            
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    
+    }
 }
 ?>
