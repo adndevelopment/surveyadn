@@ -13,5 +13,12 @@ and open the template in the editor.
         <?php
         
         ?>
+        <div id="content">
+            
+            <div id="top"></div>
+            
+            
+            
+        </div>
     </body>
 </html>

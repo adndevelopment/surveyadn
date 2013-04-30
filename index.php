@@ -10,6 +10,8 @@
         //phpinfo();
         if(isset($_GET['id']))
             {
+            header("Location:cuestionario.php");
+            //exit;
                 echo '<center>
         <img src="img/uc.jpg" alt="Survey under construction"/>
         </center>';

@@ -10,7 +10,17 @@ root {
     display: block;
 }
 
+#content
+{
+    width: 800px;
+    margin: 0px auto;
+}
+
 #top
 {
     background-image: url('../img/banner-top.jpg');
+    width:800px;
+    height: 200px;
 }
+
+
