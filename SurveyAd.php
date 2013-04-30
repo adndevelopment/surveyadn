@@ -33,11 +33,15 @@ class SurveyAd {
         }      
                 
     }
-    public function write()
+    function write()
     {
         echo "Hola";
     }
     
+    function selectSurvey()
+    {
+        
+    }
     
 }
 
