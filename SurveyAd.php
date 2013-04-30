@@ -58,11 +58,11 @@ class SurveyAd {
             
             $res = mysql_query("call surveyS('$_surveyName')", $this->dbhandle);
             
-            while($row = mysql_fetch_array($res))
+            /*while($row = mysql_fetch_array($res))
             {
                 echo $row['idSurvey']. ' ' .$row['nombre'];
                 //echo '<br />';
-            }
+            }*/
             $this->closeMySqlDataBase();
             return $res;
         }
