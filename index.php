@@ -8,10 +8,21 @@
         <?php
         // put your code here
         //phpinfo();
+        if(isset($_GET['id']))
+            {
+                echo '<center>
+        <img src="img/uc.jpg" alt="Survey under construction"/>
+        </center>';
+            }else
+                {
+                echo '<center>
+        <img src="img/mensaje.jpg" alt="Survey under construction"/>
+        </center>';
+                }
+            
+        
         
         ?>
-    <center>
-        <img src="img/uc.jpg" alt="Survey under construction"/>
-        </center>
+    
     </body>
 </html>
