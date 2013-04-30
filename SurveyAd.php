@@ -25,15 +25,23 @@ class SurveyAd {
             $userName = "sa";
             $password = "D4t42012";
             $dbName = "Survey";
-            $handle = mssql_connect($serverName, $userName, $password);
+            $this->handle = mssql_connect($serverName, $userName, $password);
             $db = mssql_select_db($dbName, $handle);
+            $query = "select * from cliente";
+            $result = mssql_query($query);
+            
+            while($row = mssql_fetch_array($result))
+            {
+                echo $row["email"];
+            }
+            
+            
         }
         catch(Exception $ex)
         {
             echo $ex->getMessage();
         }      
-        
-        mssql_close($handle);
+        mssql_close($this->handle);
                 
     }
     
