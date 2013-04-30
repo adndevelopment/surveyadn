@@ -9,8 +9,11 @@
         // put your code here
         include 'SurveyAd.php';
         $survey = new SurveyAd();
-        $survey->write();
-        $survey->connectMySqlDataBase();
+        //$survey->write();
+        //$survey->connectMySqlDataBase();
+        
+        //$survey->insertSurvey("prueba4");
+        $survey->selectSurvey('Prueba');
             
         
         

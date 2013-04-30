@@ -14,7 +14,7 @@ include("adodb5/adobd.inc.php");
  */
 class SurveyAd {
     //put your code here
-    
+    private $dbhandle;
     function connectMySqlDataBase()
     {
         try
@@ -22,10 +22,9 @@ class SurveyAd {
             $hostname = "190.7.192.3";
             $username = "root";
             $password = "D4t4L0t3d";
-            $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
-            echo "Connected to MySQL<br>";
-            
-            
+            $this->dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
+            mysql_selectdb('survey', $this->dbhandle);
+            //echo "Connected to MySQL<br>";
         }
         catch(Exception $ex)
         {
@@ -33,16 +32,73 @@ class SurveyAd {
         }      
                 
     }
+    
+    function closeMySqlDataBase()
+    {
+        try
+        {
+        mysql_close($this->dbhandle);
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
     function write()
     {
         echo "Hola";
     }
     
-    function selectSurvey()
+    function surveyS($_surveyName)
     {
-        
+        try
+        {
+            $this->connectMySqlDataBase();
+            
+            $res = mysql_query("call surveyS('$_surveyName')", $this->dbhandle);
+            
+            /*while($row = mysql_fetch_array($res))
+            {
+                echo $row['idSurvey']. ' ' .$row['nombre'];
+                //echo '<br />';
+            }*/
+            $this->closeMySqlDataBase();
+            return $res;
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
     }
     
+    function questionSType($_idSurvey)
+    {
+        try
+        {
+            $this->connectMySqlDataBase();
+            $res = mysql_db_query("call questionSType('$_idSurvey')", $this->dbhandle);
+            return $res;
+        }
+        catch (Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    function surveyI($_nombre)
+    {
+        try
+        {
+            $this->connectMysqlDataBase();
+            mysql('survey', "call surveyI('$_nombre')", $this->dbhandle);
+            //echo 'Se inserto la encuesta!';
+            $this->closeMySqlDataBase();
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }
-
 ?>
