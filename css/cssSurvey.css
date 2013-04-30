@@ -23,4 +23,15 @@ root {
     height: 200px;
 }
 
+div
+{
+    display:none;
+}
+
+p
+{
+    font-weight: bold;
+    font-size: 20pt;
+    font-family: sans-serif;
+}
 
