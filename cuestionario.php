@@ -44,14 +44,14 @@ and open the template in the editor.
                     if (trim($row['type']) == 'multiple selection') {
 
                         while ($opc = mysql_fetch_array($opciones)) {
-                            echo'<input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                            echo'<preg><input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>';
                         }
                     }
 
                     if (trim($row['type']) == 'boolean') {
 
                         while ($opc = mysql_fetch_array($opciones)) {
-                            echo'<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                            echo'<preg><input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>';
                         }
                     }
 
@@ -60,7 +60,7 @@ and open the template in the editor.
 
                         while ($opc = mysql_fetch_array($opciones)) {
                             for ($i = 0; i < $opc['value']; $i++) {
-                                echo'<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                                echo'<preg><input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<preg><br/>';
                             }
                         }
                     }
