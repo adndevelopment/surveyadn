@@ -107,10 +107,8 @@ class SurveyAd {
     {
         try
         {
-            echo 'esta entrando al metodo';
             if(trim($_questionType) == 'boolean')
             {
-                echo 'esta entrando a boolean';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionBoolS('$_idQuestion')", $this->dbhandle);
                 $this->closeMySqlDataBase();
@@ -118,7 +116,6 @@ class SurveyAd {
             }
             else if(trim($_questionType) == 'multiple selection')
             {
-                echo 'esta entrando a multipleselection';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionMultipleSelectionS('$_idQuestion')", $this->dbhandle);
                 $this->closeMySqlDataBase();
@@ -126,7 +123,6 @@ class SurveyAd {
             }
             else if(trim($_questionType) == 'range')
             {
-                echo 'esta entrando a range';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionRangeS('$_idQuestion')", $this->dbhandle);
                 $this->closeMySqlDataBase();
