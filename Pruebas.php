@@ -7,8 +7,10 @@
     <body>
         <?php
         // put your code here
-        $surveyAd = new SurveyAd();
-        $surveyAd->connectMySqlDataBase();
+        include 'SurveyAd.php';
+        $survey = new SurveyAd();
+        $survey->write();
+        $survey->connectMySqlDataBase();
             
         
         

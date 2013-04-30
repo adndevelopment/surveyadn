@@ -14,22 +14,16 @@ include("adodb5/adobd.inc.php");
  */
 class SurveyAd {
     //put your code here
-    public $con;
-    private $handle;
+    
     function connectMySqlDataBase()
     {
         try
         {
-            $this->con=mysqli_connect("190.7.192.3","root","D4t4L0t3d","survey");
-            
-            if (mysqli_connect_errno($this->con))
-            {
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            }
-            else
-            {
-                echo "It connected";
-            }
+            $hostname = "190.7.192.3";
+            $username = "root";
+            $password = "D4t4L0t3d";
+            $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
+            echo "Connected to MySQL<br>";
             
             
         }
@@ -37,10 +31,12 @@ class SurveyAd {
         {
             echo $ex->getMessage();
         }      
-        mysqli_close($this->con);
                 
     }
-    
+    public function write()
+    {
+        echo "Hola";
+    }
     
     
 }
