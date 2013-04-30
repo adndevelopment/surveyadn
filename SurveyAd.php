@@ -14,26 +14,16 @@ include("adodb5/adobd.inc.php");
  */
 class SurveyAd {
     //put your code here
-    public static $con;
-    private $handle;
-    function Conectar()
+    
+    function connectMySqlDataBase()
     {
         try
         {
-            //$this->con = NewADOConnection("mssql"); //mssql_connect('190.7.192.3', 'adnSurvey', 'Com54.pas');
-            $serverName = "190.7.192.3";
-            $userName = "sa";
-            $password = "D4t42012";
-            $dbName = "Survey";
-            $this->handle = mssql_connect($serverName, $userName, $password);
-            $db = mssql_select_db($dbName, $handle);
-            $query = "select * from cliente";
-            $result = mssql_query($query);
-            
-            while($row = mssql_fetch_array($result))
-            {
-                echo $row["email"];
-            }
+            $hostname = "190.7.192.3";
+            $username = "root";
+            $password = "D4t4L0t3d";
+            $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL");
+            echo "Connected to MySQL<br>";
             
             
         }
@@ -41,11 +31,17 @@ class SurveyAd {
         {
             echo $ex->getMessage();
         }      
-        mssql_close($this->handle);
                 
     }
+    function write()
+    {
+        echo "Hola";
+    }
     
-    
+    function selectSurvey()
+    {
+        
+    }
     
 }
 

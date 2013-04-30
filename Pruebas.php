@@ -7,7 +7,10 @@
     <body>
         <?php
         // put your code here
-        call_user_func('Conectar');
+        include 'SurveyAd.php';
+        $survey = new SurveyAd();
+        $survey->write();
+        $survey->connectMySqlDataBase();
             
         
         
