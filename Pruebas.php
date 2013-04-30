@@ -13,7 +13,9 @@
         //$survey->connectMySqlDataBase();
         
         //$survey->insertSurvey("prueba4");
-        $survey->selectSurvey('Prueba');
+        $row = $survey->surveyS('pruebaADN');
+        $prueba = mysql_fetch_array($row);
+        echo $prueba['idSurvey'];
             
         
         

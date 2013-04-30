@@ -58,11 +58,11 @@ class SurveyAd {
             
             $res = mysql_query("call surveyS('$_surveyName')", $this->dbhandle);
             
-            /*while($row = mysql_fetch_array($res))
+            while($row = mysql_fetch_array($res))
             {
                 echo $row['idSurvey']. ' ' .$row['nombre'];
                 //echo '<br />';
-            }*/
+            }
             $this->closeMySqlDataBase();
             return $res;
         }
@@ -77,7 +77,7 @@ class SurveyAd {
         try
         {
             $this->connectMySqlDataBase();
-            $res = mysql_db_query("call questionSType('$_idSurvey')", $this->dbhandle);
+            $res = mysql_query("call questionSType('$_idSurvey')", $this->dbhandle);
             return $res;
         }
         catch (Exception $e)
