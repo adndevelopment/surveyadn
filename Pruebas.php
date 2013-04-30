@@ -7,7 +7,8 @@
     <body>
         <?php
         // put your code here
-        call_user_func('Conectar');
+        $surveyAd = new SurveyAd();
+        $surveyAd->connectMySqlDataBase();
             
         
         
