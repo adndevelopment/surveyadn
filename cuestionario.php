@@ -8,47 +8,70 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/cssSurvey.css" rel="stylesheet" type="text/css"/>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        
+
         <title>Cuestionario ADN</title>
         <script>
-        $(document).ready(function()
-        {
-            $("div:hidden").fadeIn(3000);
-        });
+            $(document).ready(function()
+            {
+                $("div:hidden").fadeIn(3000);
+            });
         </script>
     </head>
     <body>
         <?php
         include ("SurveyAd.php");
-        
+
+
+
         $surveyAd = new SurveyAd();
-        
-        $idSurvey  = $surveyAd->surveyS("pruebaADN");
-        
-        $preg = $surveyAd->questionSType($_idSurvey);
-        
+
+        $idSurvey = $surveyAd->surveyS("pruebaADN");
+        $id = mysql_fetch_array($idSurvey);
+        //echo $id['idSurvey'];
+        $preg = $surveyAd->questionSType($id['idSurvey']);
         ?>
         <div id="content">
-            
+
             <div id="top">
             </div> 
-                <form action="" method="POST">
-                    <?php
-                    while($row = mysql_fetch_array($preg)){
-                        
-                    ?>
-                    <p>
-                        1 - aaa
-                    </p>
-                    <?php
+            <form action="" method="POST">
+                <?php
+                while ($row = mysql_fetch_array($preg)) {
+                    echo '<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>';
+
+                    $opciones = $surveyAd->getPosibleAnswer($row['idQuestion'], $row['type']);
+
+                    if (trim($row['type']) == 'multiple selection') {
+
+                        while ($opc = mysql_fetch_array($opciones)) {
+                            echo'<input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                        }
                     }
-                    ?>
-                </form>
-                
-            
-            
-            
-            
+
+                    if (trim($row['type']) == 'boolean') {
+
+                        while ($opc = mysql_fetch_array($opciones)) {
+                            echo'<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                        }
+                    }
+
+
+                    if (trim($row['type']) == 'range') {
+
+                        while ($opc = mysql_fetch_array($opciones)) {
+                            for ($i = 0; i < $opc['value']; $i++) {
+                                echo'<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '<br/>';
+                            }
+                        }
+                    }
+                }
+                ?>
+            </form>
+
+
+
+
+
         </div>
     </body>
 </html>
