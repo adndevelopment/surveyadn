@@ -1,0 +1,16 @@
+/* 
+    Document   : cssSurvey
+    Created on : 29/04/2013, 10:33:30 PM
+    Author     : Diego
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#top
+{
+    background-image: url('../img/banner-top.jpg');
+}
