@@ -78,6 +78,8 @@ class SurveyAd {
         {
             $this->connectMySqlDataBase();
             $res = mysql_query("call questionSType('$_idSurvey')", $this->dbhandle);
+            
+            $this->closeMySqlDataBase();
             return $res;
         }
         catch (Exception $e)
@@ -111,6 +113,7 @@ class SurveyAd {
                 echo 'esta entrando a boolean';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionBoolS('$_idQuestion')", $this->dbhandle);
+                $this->closeMySqlDataBase();
                 return $res;
             }
             else if(trim($_questionType) == 'multiple selection')
@@ -118,6 +121,7 @@ class SurveyAd {
                 echo 'esta entrando a multipleselection';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionMultipleSelectionS('$_idQuestion')", $this->dbhandle);
+                $this->closeMySqlDataBase();
                 return $res;
             }
             else if(trim($_questionType) == 'range')
@@ -125,6 +129,7 @@ class SurveyAd {
                 echo 'esta entrando a range';
                 $this->connectMysqlDataBase();
                 $res = mysql_query("call questionRangeS('$_idQuestion')", $this->dbhandle);
+                $this->closeMySqlDataBase();
                 return $res;
             }
             
