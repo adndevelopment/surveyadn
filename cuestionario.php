@@ -34,7 +34,7 @@ and open the template in the editor.
 
             <div id="top">
             </div> 
-            <form action="" method="POST">
+            <form action="finalizar.php" method="POST">
                 <?php
                 while ($row = mysql_fetch_array($preg)) {
                     echo '<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>';
@@ -55,20 +55,40 @@ and open the template in the editor.
                         }
                     }
 
-
+                    $prim = true;
                     if (trim($row['type']) == 'range') {
-
+                        echo '<table>';
                         while ($opc = mysql_fetch_array($opciones)) {
-                            echo  '<preg>'.$opc['description'].'-';
-                            for ($i = 0; $i < $opc['value']; $i++) {
+                            if($prim == true)
+                                {
+                                echo'<tr><th></th>';
+                                for ($i = 1; $i <= $opc['value']; $i++) 
+                                {
+                                    echo'<th>'.$i.'</th>';
+                                }
+                                echo '</tr>';
+                                $prim = false;
+                                }
+                            echo '<tr><td>';
+                            echo  '<preg>'.$opc['description'].'</td>';
+                            for ($i = 1; $i <= $opc['value']; $i++) {
+                                echo '<td>';
+                                echo '<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange']. '" value="' . $i . '">';
+                                echo '</td>';
                                 
-                                echo'<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange']. '" value="' . $i . '">' . $i ;
                             }
-                            echo'</preg><br/>';
+                            echo'</preg>';
                         }
+                        echo '</table>';
                     }
                 }
                 ?>
+                
+                <center>
+                    <br/>
+                    <br/>
+                <input type="submit" value="Enviar">
+                </center>
             </form>
 
 
