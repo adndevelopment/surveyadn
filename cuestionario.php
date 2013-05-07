@@ -20,11 +20,26 @@ and open the template in the editor.
     <body>
         <?php
         include ("SurveyAd.php");
+        session_start();
 
-
-
+        if($_POST['Enviar'])
+        {
+            $completo=true;
+            $preg = $_SESSION['preguntas'];
+            foreach($preg as $respuesta)
+                {
+                    if(empty($respuesta))
+                        {
+                            $completo = false;
+                        }
+                }
+            if($completo)
+                {
+                    header( 'Location: finalizar.php' ) ;
+                }
+        }
         $surveyAd = new SurveyAd();
-
+        $listaResp = array();
         $idSurvey = $surveyAd->surveyS("pruebaADN");
         $id = mysql_fetch_array($idSurvey);
         //echo $id['idSurvey'];
