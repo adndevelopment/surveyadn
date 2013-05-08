@@ -6,7 +6,7 @@
  */
 
 session_start();
-
+echo 'llega aqui';
 $lista = $_SESSION['listaRespuestas'];
 
 $xml='<answers>';

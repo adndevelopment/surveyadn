@@ -29,13 +29,17 @@ and open the template in the editor.
             $pregT = $_SESSION['tipoPreguntas'];
             foreach($pregL as $respuesta)
                 {
+                echo $respuesta.'-valor:';
+                echo $_POST[$respuesta].'<br/>';
                 if(empty($_POST[$respuesta]))
                         {
                             $completo = false;
                         }
                 }
+                
             if($completo)
                 {
+                    
                     $cont =0;
                     $listaRespuestas = array();
                     foreach($pregL as $idRespuesta)
@@ -49,13 +53,14 @@ and open the template in the editor.
                             $respuestaEn->idClient = 4;
                             $cont = $cont +1;
                             array_push($listaRespuestas, $respuestaEn);
-                            
+                            echo $respuestaEn->idQuestion;
                             
                         
                         }
                         
                     $_SESSION['listaRespuestas']=$listaRespuestas;
-                    header( 'Location: finalizar.php' ) ;
+                    echo 'entra';
+                    header("Location:finalizar.php") ;
                 }
                 else
                     {
@@ -80,8 +85,11 @@ and open the template in the editor.
                 <?php
                 while ($row = mysql_fetch_array($preg)) {
                     echo '<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>';
+                    if(trim($row['type']) != 'range')
+                        {
                     array_push($listaResp,$row['idQuestion']);
                     array_push($listaTip, $row['type']);
+                    }
                     $opciones = $surveyAd->getPosibleAnswer($row['idQuestion'], $row['type']);
 
                     if (trim($row['type']) == 'multiple selection') {
@@ -114,8 +122,15 @@ and open the template in the editor.
                                 }
                             echo '<tr><td>';
                             echo  '<preg>'.$opc['description'].'</td>';
+                            $uno = true;
                             for ($i = 1; $i <= $opc['value']; $i++) {
                                 echo '<td>';
+                                if($uno)
+                                    {
+                                        array_push($listaResp,$row['idQuestion'].'-'.$opc['idquestionRange']);
+                                        array_push($listaTip, $row['type']);
+                                        $uno = false;
+                                    }
                                 echo '<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange'].'" value="' . $i . '">';
                                 echo '</td>';
                                 

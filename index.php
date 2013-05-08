@@ -9,6 +9,7 @@
         include ("SurveyAd.php");
         // put your code here
         //phpinfo();
+        session_start();
         if(isset($_GET['id']))
             {
             
@@ -20,8 +21,6 @@
             
             while ($row = mysql_fetch_array($info)) 
                 {
-                    
-                    
                     if($row['email'] != '')
                         {
                             $existe = true;
