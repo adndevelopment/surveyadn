@@ -6,20 +6,48 @@
     </head>
     <body>
         <?php
+        include ("SurveyAd.php");
         // put your code here
         //phpinfo();
         if(isset($_GET['id']))
             {
-            header("Location:cuestionario.php");
+            
+            try{
+            $surveyAd = new SurveyAd();
+            $info = $surveyAd->clientS($_GET['id']);
+            
+            $existe = false;
+            
+            while ($row = mysql_fetch_array($info)) 
+                {
+                    
+                    
+                    if($row['email'] != '')
+                        {
+                            $existe = true;
+                        }
+                }
+            if($existe == true)
+                {
+                    header("Location:cuestionario.php");
+                }
+            else
+                {
+                    echo '<center>
+                    <img src="img/mensaje.jpg" alt="Survey under construction"/>
+                    </center>';
+                }
+            }catch(Exception $ex)
+            {echo $ex->getMessage();}
             //exit;
-                echo '<center>
+           /*     echo '<center>
         <img src="img/uc.jpg" alt="Survey under construction"/>
-        </center>';
+        </center>';*/
             }else
                 {
                 echo '<center>
-        <img src="img/mensaje.jpg" alt="Survey under construction"/>
-        </center>';
+                <img src="img/mensaje.jpg" alt="Survey under construction"/>
+                </center>';
                 }
             
         

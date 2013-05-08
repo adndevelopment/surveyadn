@@ -22,5 +22,5 @@ foreach ($lista as $answer)
     }
 $xml .='</answers>';
 
-
+echo $xml;
 ?>
