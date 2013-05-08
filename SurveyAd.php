@@ -152,5 +152,20 @@ class SurveyAd {
         }
     
     }
+    
+    function insertAnswer($_xml,$_countAnswers)
+    {
+        try
+        {
+            $this->connectMySqlDataBase();
+            $res = mysql_query("call insertAnswer('$_xml','$_countAnswers')", $this->dbhandle);
+            $this->closeMySqlDataBase();
+            return $res; 
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
