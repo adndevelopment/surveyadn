@@ -25,21 +25,48 @@ and open the template in the editor.
         if($_POST['Enviar'])
         {
             $completo=true;
-            $preg = $_SESSION['preguntas'];
-            foreach($preg as $respuesta)
+            $pregL = $_SESSION['preguntas'];
+            $pregT = $_SESSION['tipoPreguntas'];
+            foreach($pregL as $respuesta)
                 {
-                    if(empty($respuesta))
+                if(empty($_POST[$respuesta]))
                         {
                             $completo = false;
                         }
                 }
             if($completo)
                 {
+                    $cont =0;
+                    $listaRespuestas = array();
+                    foreach($pregL as $idRespuesta)
+                        {
+                            //$nombre = explode("",$idRespuesta);
+                            $respuestaEn = new RespuestaEn();
+                            $respuestaEn->idQuestion = $idRespuesta;
+                            $respuestaEn->value = $_POST[$idRespuesta];
+                            if($_POST['comment']){$respuestaEn->comment = $_POST['comment'];}else{$respuestaEn->comment ='';}
+                            $respuestaEn->idTipo = $pregT[$cont];
+                            $respuestaEn->idClient = 4;
+                            $cont = $cont +1;
+                            array_push($listaRespuestas, $respuestaEn);
+                            
+                            
+                        
+                        }
+                        
+                    $_SESSION['listaRespuestas']=$listaRespuestas;
                     header( 'Location: finalizar.php' ) ;
                 }
+                else
+                    {
+                        print '<script type="text/javascript">'; 
+                        print 'alert("Por favor verificar que todas las respuestas esten completas")'; 
+                        print '</script>';  
+                    }
         }
         $surveyAd = new SurveyAd();
         $listaResp = array();
+        $listaTip = array();
         $idSurvey = $surveyAd->surveyS("pruebaADN");
         $id = mysql_fetch_array($idSurvey);
         //echo $id['idSurvey'];
@@ -49,11 +76,12 @@ and open the template in the editor.
 
             <div id="top">
             </div> 
-            <form action="finalizar.php" method="POST">
+            <form action="cuestionario.php" method="POST">
                 <?php
                 while ($row = mysql_fetch_array($preg)) {
                     echo '<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>';
-
+                    array_push($listaResp,$row['idQuestion']);
+                    array_push($listaTip, $row['type']);
                     $opciones = $surveyAd->getPosibleAnswer($row['idQuestion'], $row['type']);
 
                     if (trim($row['type']) == 'multiple selection') {
@@ -88,7 +116,7 @@ and open the template in the editor.
                             echo  '<preg>'.$opc['description'].'</td>';
                             for ($i = 1; $i <= $opc['value']; $i++) {
                                 echo '<td>';
-                                echo '<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange']. '" value="' . $i . '">';
+                                echo '<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange'].'" value="' . $i . '">';
                                 echo '</td>';
                                 
                             }
@@ -97,12 +125,15 @@ and open the template in the editor.
                         echo '</table>';
                     }
                 }
+                
+                $_SESSION['preguntas'] = $listaResp;
+                $_SESSION['tipoPreguntas'] = $listaTip;
                 ?>
                 
                 <center>
                     <br/>
                     <br/>
-                <input type="submit" value="Enviar">
+                <input type="submit" name="Enviar" value="Enviar">
                 </center>
             </form>
 
