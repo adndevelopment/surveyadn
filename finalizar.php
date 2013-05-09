@@ -16,14 +16,14 @@ $lista = $_SESSION['listaRespuestas'];
 $clienteEn = $_SESSION['cliente'];
 $xml = '<answers>';
 $xml .='<client>';
-$xml .='<field name="idQuestion">' . $clienteEn->getIdClient() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getName() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getApellidos() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getEmail() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getPuesto() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getCompania() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getTelephone() . '</field>';
-$xml .='<field name="idQuestion">' . $clienteEn->getUbicacion() . '</field>';
+$xml .='<field name="idClient">' . $clienteEn->getIdClient() . '</field>';
+$xml .='<field name="name">' . $clienteEn->getName() . '</field>';
+$xml .='<field name="email">' . $clienteEn->getEmail() . '</field>';
+$xml .='<field name="telephone">' . $clienteEn->getTelephone() . '</field>';
+$xml .='<field name="compania">' . $clienteEn->getCompania() . '</field>';
+$xml .='<field name="apellidos">' . $clienteEn->getApellidos() . '</field>';
+$xml .='<field name="puesto">' . $clienteEn->getPuesto() . '</field>';
+$xml .='<field name="ubicacion">' . $clienteEn->getUbicacion() . '</field>';
 $xml .='</client>';
 
 foreach ($lista as $answer) {
