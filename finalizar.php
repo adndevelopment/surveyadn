@@ -14,8 +14,51 @@ $surveyAd = new SurveyAd();
 
 $lista = $_SESSION['listaRespuestas'];
 $clienteEn = $_SESSION['cliente'];
-$xml = '<?xml version="1.0"?> <answers>';
-$xml .='<client>';
+
+$xml = new DOMDocument('1.0','UTF-8');
+$root = $xml->createElement('answers');
+$root = $xml->appendChild($root);
+
+$client = $xml->createElement('client');
+$client = $root->appendChild($client);
+
+$idC = $xml->createElement('field',$clienteEn->getIdClient());
+$idC = $idC->setAttribute('name', 'idClient');
+$idC = $client->appendChild($idC);
+
+$nameC = $xml->createElement('field',$clienteEn->getName());
+$nameC = $nameC->setAttribute('name', 'name');
+$nameC = $client->appendChild($nameC);
+
+$emailC = $xml->createElement('field',$clienteEn->getEmail());
+$emailC = $emailC->setAttribute('name', 'email');
+$emailC = $client->appendChild($emailC);
+
+$telC = $xml->createElement('field',$clienteEn->getTelephone());
+$telC = $telC->setAttribute('name', 'telephone');
+$telC = $client->appendChild($telC);
+
+$comC = $xml->createElement('field',$clienteEn->getCompania());
+$comC = $comC->setAttribute('name', 'compania');
+$comC = $client->appendChild($comC);
+
+$apeC = $xml->createElement('field',$clienteEn->getApellidos());
+$apeC = $apeC->setAttribute('name', 'apellidos');
+$apeC = $client->appendChild($apeC);
+
+$pueC = $xml->createElement('field',$clienteEn->getPuesto());
+$pueC = $pueC->setAttribute('name', 'puesto');
+$pueC = $client->appendChild($pueC);
+
+$ubiC = $xml->createElement('field',$clienteEn->getUbicacion());
+$ubiC = $ubiC->setAttribute('name', 'ubicacion');
+$ubiC = $client->appendChild($ubiC);
+
+
+	$xml->formatOutput = true;
+
+echo '<xmp>'.$xml->saveXML().'</xmp>';
+/*
 $xml .='<field name="idClient">' . $clienteEn->getIdClient() . '</field>';
 $xml .='<field name="name">' . $clienteEn->getName() . '</field>';
 $xml .='<field name="email">' . $clienteEn->getEmail() . '</field>';
@@ -40,9 +83,9 @@ $xml .='</answers>';
 
 $xmlF = simplexml_load_string($xml);
 
-echo $xmlF;
-$surveyAd->insertAnswer($xmlF, count($lista));
-echo count($lista);}
- catch (Exception $ex){echo $ex->getMessage();}
+echo ('<pre>'.$xmlF->asXML().'</pre>');
+$surveyAd->insertAnswer($xmlF, count($lista));*/
+//echo count($lista);}
+}catch (Exception $ex){echo $ex->getMessage();}
 session_destroy();
 ?>
