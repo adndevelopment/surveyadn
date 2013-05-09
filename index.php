@@ -7,6 +7,7 @@
     <body>
         <?php
         include ("SurveyAd.php");
+        include ("ClienteEn.php");
         // put your code here
         //phpinfo();
         session_start();
@@ -23,6 +24,15 @@
                 {
                     if($row['email'] != '')
                         {
+                            $clienteEn= new ClienteEn();
+                            $clienteEn->setName($row['name']);
+                            $clienteEn->setApellidos($row['apellidos']);
+                            $clienteEn->setEmail($row['email']);
+                            $clienteEn->setPuesto($row['puesto']);
+                            $clienteEn->setCompania($row['compania']);
+                            $clienteEn->setTelephone($row['telephone']);
+                            $clienteEn->setUbicacion($row['ubicacion']);
+                            $_SESSION['cliente']= $clienteEn;
                             $existe = true;
                         }
                 }

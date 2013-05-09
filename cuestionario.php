@@ -22,7 +22,12 @@ and open the template in the editor.
         include ("SurveyAd.php");
         include ("RespuestaEn.php");
         session_start();
-
+        if(!empty($_SESSION['cliente']))
+            {
+            echo '<center>
+                    <img src="img/acceso-denegado.jpg" alt="Survey under construction"/>
+                    </center>';
+            }else{
         if($_POST['Enviar'])
         {
             $completo=true;
@@ -99,6 +104,13 @@ and open the template in the editor.
                             echo utf8_encode('<preg><input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>');
                         }
                     }
+                    
+                    if (trim($row['type']) == 'radio') {
+
+                        while ($opc = mysql_fetch_array($opciones)) {
+                            echo utf8_encode('<preg><input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>');
+                        }
+                    }
 
                     if (trim($row['type']) == 'boolean') {
 
@@ -152,7 +164,9 @@ and open the template in the editor.
                 <input type="submit" name="Enviar" value="Enviar">
                 </center>
             </form>
-
+<?php 
+        }
+?>
 
 
 

@@ -17,6 +17,7 @@ private $comment;
 private $idTipo;
 private $value;
 
+
 public function getIdQuestion() {
     return $this->idQuestion;
 }
