@@ -21,11 +21,12 @@ and open the template in the editor.
         <?php
         include ("SurveyAd.php");
         include ("RespuestaEn.php");
+        include ("ClienteEn.php");
         session_start();
         if(!isset($_SESSION['cliente']))
             {
             echo '<center>
-                    <img src="img/acceso-denegado.jpg" alt="Survey under construction"/>
+                    <img src="img/acceso-denegado.jpg" alt="Acceso denegado"/>
                     </center>';
             }else{
         if($_POST['Enviar'])
@@ -48,11 +49,23 @@ and open the template in the editor.
                     echo'entro a completo';
                     $cont =0;
                     $listaRespuestas = array();
+                    $clienteEn = $_SESSION['cliente'];
+                    
+                    $clienteEn->setName($_POST['nombre']);
+                            $clienteEn->setApellidos($_POST['apellidos']);
+                            $clienteEn->setPuesto($_POST['puesto']);
+                            $clienteEn->setCompania($_POST['empresa']);
+                            $clienteEn->setTelephone($_POST['nombre']);
+                            $clienteEn->setUbicacion($_POST['ubicacion']);
+                            $_SESSION['cliente']= $clienteEn;
+                    
                     foreach($pregL as $idRespuesta)
                         {
                         echo 'entra for each';
                             //$nombre = explode("",$idRespuesta);
                                 
+                        
+                            
                                 
                         
                             $respuestaEn = new RespuestaEn();
@@ -65,7 +78,7 @@ and open the template in the editor.
                           
                             $respuestaEn->setIdTipo($pregT[$cont]);
                             
-                            $respuestaEn->setIdClient(4);
+                            $respuestaEn->setIdClient($clienteEn->getIdClient());
                             $cont = $cont +1;
                             echo 'hasta aqui';
                             //$listaRespuestas[]= $respuestaEn;

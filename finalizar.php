@@ -14,7 +14,7 @@ $surveyAd = new SurveyAd();
 
 $lista = $_SESSION['listaRespuestas'];
 $clienteEn = $_SESSION['cliente'];
-$xml = '<answers>';
+$xml = '<?xml version="1.0"?> <answers>';
 $xml .='<client>';
 $xml .='<field name="idClient">' . $clienteEn->getIdClient() . '</field>';
 $xml .='<field name="name">' . $clienteEn->getName() . '</field>';
@@ -38,8 +38,11 @@ foreach ($lista as $answer) {
 }
 $xml .='</answers>';
 
-printf($xml);
-$surveyAd->insertAnswer($xml, count($lista));
+$xmlF = simplexml_load_string($xml);
+
+echo $xmlF;
+$surveyAd->insertAnswer($xmlF, count($lista));
 echo count($lista);}
  catch (Exception $ex){echo $ex->getMessage();}
+session_destroy();
 ?>
