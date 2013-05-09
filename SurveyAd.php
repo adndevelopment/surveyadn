@@ -167,5 +167,19 @@ class SurveyAd {
             echo $e->getMessage();
         }
     }
+    function client_has_surveySChecksSurvey($_idClient, $_idSurvey)
+    {
+        try
+        {
+            $this->connectMySqlDataBase();
+            $res = mysql_query("call client_has_surveySChecksSurvey('$_idClient','$_idSurvey')", $this->dbhandle);
+            $this->closeMySqlDataBase();
+            return $res;
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

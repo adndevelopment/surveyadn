@@ -11,7 +11,7 @@
         $survey = new SurveyAd();
         //$survey->write();
         //$survey->connectMySqlDataBase();
-        $Prueba = 'funciona esta bara o no??Me cago en la putisima!';
+        $Prueba = 'funciona esta bara o no?? si';
         //$survey->insertSurvey("prueba4");
         $row = $survey->surveyS('pruebaADN');
         $prueba = mysql_fetch_array($row);
