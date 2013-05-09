@@ -99,7 +99,17 @@ and open the template in the editor.
             <div id="top">
             </div> 
             <form action="cuestionario.php" method="POST">
+
+                <p>Nombre: <input type="text" name="nombre"/></p>
+                <p>Apellidos: <input type="text" name="apellidos"/></p>
+                <p>Puesto: <input type="text" name="puesto"/></p>
+                <p>Empresa o Entidad: <input type="text" name="empresa"/></p>
+                <p>Ubicacion: <input type="text" name="ubicacion"/></p>
+
+
                 <?php
+                
+                
                 while ($row = mysql_fetch_array($preg)) {
                     echo  utf8_encode('<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>');
                     if(trim($row['type']) != 'range')
