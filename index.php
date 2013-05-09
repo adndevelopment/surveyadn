@@ -25,6 +25,7 @@
                     if($row['email'] != '')
                         {
                             $clienteEn= new ClienteEn();
+                            $clienteEn->setIdClient($_GET['id']);
                             $clienteEn->setName($row['name']);
                             $clienteEn->setApellidos($row['apellidos']);
                             $clienteEn->setEmail($row['email']);

@@ -22,7 +22,7 @@ and open the template in the editor.
         include ("SurveyAd.php");
         include ("RespuestaEn.php");
         session_start();
-        if(!empty($_SESSION['cliente']))
+        if(!isset($_SESSION['cliente']))
             {
             echo '<center>
                     <img src="img/acceso-denegado.jpg" alt="Survey under construction"/>
@@ -45,27 +45,38 @@ and open the template in the editor.
                 
             if($completo)
                 {
-                    
+                    echo'entro a completo';
                     $cont =0;
                     $listaRespuestas = array();
                     foreach($pregL as $idRespuesta)
                         {
+                        echo 'entra for each';
                             //$nombre = explode("",$idRespuesta);
+                                
+                                
+                        
                             $respuestaEn = new RespuestaEn();
+                            
                             $respuestaEn->setIdQuestion($idRespuesta);
+                            
                             $respuestaEn->setValue($_POST[$idRespuesta]);
-                            if($_POST['comment']){$respuestaEn->setComment($_POST['comment']);}else{$respuestaEn->setComment($_POST['comment']);}
+                            
+                            if($pregT[$cont]){$respuestaEn->setComment($_POST['comment']);}else{$respuestaEn->setComment('');}
+                          
                             $respuestaEn->setIdTipo($pregT[$cont]);
+                            
                             $respuestaEn->setIdClient(4);
                             $cont = $cont +1;
+                            echo 'hasta aqui';
+                            //$listaRespuestas[]= $respuestaEn;
                             array_push($listaRespuestas, $respuestaEn);
-                            echo $respuestaEn->idQuestion;
+                            echo $respuestaEn->getIdClient();
                             
                         
                         }
                         
                     $_SESSION['listaRespuestas']=$listaRespuestas;
-                    echo 'entra';
+                    echo 'entra50';
                     header("Location:finalizar.php") ;
                 }
                 else
@@ -103,6 +114,13 @@ and open the template in the editor.
                         while ($opc = mysql_fetch_array($opciones)) {
                             echo utf8_encode('<preg><input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>');
                         }
+                    }
+                    
+                    if (trim($row['type']) == 'comment') {
+
+                        
+                        echo utf8_encode('<preg><textarea cols="50" rows="5" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '"></textarea></preg><br/>');
+                        
                     }
                     
                     if (trim($row['type']) == 'radio') {
