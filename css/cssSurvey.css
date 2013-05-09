@@ -31,23 +31,36 @@ div
 p
 {
     font-weight: bold;
-    font-size: 20pt;
+    font-size: 16pt;
     font-family: sans-serif;
 }
 
 preg
 {
     color: blue;
-    font-size: 16pt;
+    font-size: 12pt;
     font-family: sans-serif;
 }
    
 table
 {
-    border-spacing: 50px 0;
+    
 }
 
 textArea
 {
     resize: none;
+}
+
+#infoPer
+{
+    color: blue;
+    font-size: 12pt;
+    font-family: sans-serif;
+}
+
+
+#tabOpc
+{
+    border-spacing: 50px 0;
 }

@@ -99,13 +99,34 @@ and open the template in the editor.
             <div id="top">
             </div> 
             <form action="cuestionario.php" method="POST">
-
-                <p>Nombre: <input type="text" name="nombre"/></p>
-                <p>Apellidos: <input type="text" name="apellidos"/></p>
-                <p>Puesto: <input type="text" name="puesto"/></p>
-                <p>Empresa o Entidad: <input type="text" name="empresa"/></p>
-                <p>Ubicacion: <input type="text" name="ubicacion"/></p>
-
+                
+                <table>
+                <tr>
+                    <td>
+                        <p>Nombre: </p></td><td><input id="infoPer" type="text" name="nombre"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Apellidos: </p></td><td><input id="infoPer" type="text" name="apellidos"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Puesto: </p></td><td><input id="infoPer" type="text" name="puesto"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Empresa o Entidad: </p></td><td><input id="infoPer" type="text" name="empresa"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Ubicacion: </p></td><td><input id="infoPer" type="text" name="ubicacion"/>
+                    </td>
+                </tr>
+                </table>
 
                 <?php
                 
@@ -149,7 +170,7 @@ and open the template in the editor.
 
                     $prim = true;
                     if (trim($row['type']) == 'range') {
-                        echo '<table>';
+                        echo '<table id="tabOpc">';
                         while ($opc = mysql_fetch_array($opciones)) {
                             if($prim == true)
                                 {
