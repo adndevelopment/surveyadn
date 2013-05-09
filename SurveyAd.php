@@ -128,6 +128,13 @@ class SurveyAd {
                 $this->closeMySqlDataBase();
                 return $res;
             }
+            else if(trim($_questionType) == 'radio')
+            {
+                $this->connectMysqlDataBase();
+                $res = mysql_query("call questionMultipleSelectionS('$_idQuestion')", $this->dbhandle);
+                $this->closeMySqlDataBase();
+                return $res;
+            }
             
         }
         catch(Exception $e)
