@@ -17,7 +17,7 @@
         $prueba = mysql_fetch_array($row);
         echo $prueba['idSurvey'];
         
-        
+        echo 'marica';
         
         ?>
     
