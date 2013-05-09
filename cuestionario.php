@@ -20,6 +20,7 @@ and open the template in the editor.
     <body>
         <?php
         include ("SurveyAd.php");
+        include ("RespuestaEn.php");
         session_start();
 
         if($_POST['Enviar'])
@@ -46,11 +47,11 @@ and open the template in the editor.
                         {
                             //$nombre = explode("",$idRespuesta);
                             $respuestaEn = new RespuestaEn();
-                            $respuestaEn->idQuestion = $idRespuesta;
-                            $respuestaEn->value = $_POST[$idRespuesta];
-                            if($_POST['comment']){$respuestaEn->comment = $_POST['comment'];}else{$respuestaEn->comment ='';}
-                            $respuestaEn->idTipo = $pregT[$cont];
-                            $respuestaEn->idClient = 4;
+                            $respuestaEn->setIdQuestion($idRespuesta);
+                            $respuestaEn->setValue($_POST[$idRespuesta]);
+                            if($_POST['comment']){$respuestaEn->setComment($_POST['comment']);}else{$respuestaEn->setComment($_POST['comment']);}
+                            $respuestaEn->setIdTipo($pregT[$cont]);
+                            $respuestaEn->setIdClient(4);
                             $cont = $cont +1;
                             array_push($listaRespuestas, $respuestaEn);
                             echo $respuestaEn->idQuestion;
@@ -84,7 +85,7 @@ and open the template in the editor.
             <form action="cuestionario.php" method="POST">
                 <?php
                 while ($row = mysql_fetch_array($preg)) {
-                    echo '<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>';
+                    echo  utf8_encode('<p>' . $row['idQuestion'] . '-' . $row['question'] . '?</p>');
                     if(trim($row['type']) != 'range')
                         {
                     array_push($listaResp,$row['idQuestion']);
@@ -95,14 +96,14 @@ and open the template in the editor.
                     if (trim($row['type']) == 'multiple selection') {
 
                         while ($opc = mysql_fetch_array($opciones)) {
-                            echo'<preg><input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>';
+                            echo utf8_encode('<preg><input type="checkbox" id="' . $row['idQuestion'] . '-' . $opc['idquestionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>');
                         }
                     }
 
                     if (trim($row['type']) == 'boolean') {
 
                         while ($opc = mysql_fetch_array($opciones)) {
-                            echo'<preg><input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>';
+                            echo utf8_encode('<preg><input type="radio" id="' . $row['idQuestion'] . '-' . $opc['idquetionMultipleSelection'] . '" name="' . $row['idQuestion'] . '" value="' . $opc['value'] . '">' . $opc['value'] . '</preg><br/>');
                         }
                     }
 
@@ -131,7 +132,7 @@ and open the template in the editor.
                                         array_push($listaTip, $row['type']);
                                         $uno = false;
                                     }
-                                echo '<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange'].'" value="' . $i . '">';
+                                echo utf8_encode('<input type="radio" id="' . $row['idQuestion'] . '-' . $opc['value'] . '" name="' . $row['idQuestion'] .'-'.$opc['idquestionRange'].'" value="' . $i . '">');
                                 echo '</td>';
                                 
                             }
