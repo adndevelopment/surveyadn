@@ -188,5 +188,33 @@ class SurveyAd {
             echo $e->getMessage();
         }
     }
+    function clientSMD5()
+    {
+        try
+        {
+            $this->connectMySqlDataBase();
+            $res = mysql_query("call clientSMD5", $this->dbhandle);
+            $this->closeMySqlDataBase();
+            return $res;
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    function answerSQuestionSCheckAnswers($_idClient,$_idSurvey)
+    {
+        try
+        {
+            $this->connectMySqlDataBase();
+            $res = mysql_query("call answerSQuestionSCheckAnswers('$_idClient','$_idSurvey')", $this->dbhandle);
+            $this->closeMySqlDataBase();
+            return $res;
+        }
+        catch(Exception $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 }
 ?>
