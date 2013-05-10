@@ -15,9 +15,10 @@
 
             try {
                 $surveyAd = new SurveyAd();
-                $surveyAnt = $surveyAd->client_has_surveySChecksSurvey($_GET['id'], 5);
+                $surveyAnt = $surveyAd->answerSQuestionSCheckAnswers($_GET['id'], 5);
                 $surAnt = mysql_fetch_array($surveyAnt);
-                if ($surAnt['Survey_idSurvey'] == '') {
+                echo $surAnt['idAnswer'];
+                if ($surAnt['idAnswer'] == '') {
                     $info = $surveyAd->clientS($_GET['id']);
 
                     $existe = false;
