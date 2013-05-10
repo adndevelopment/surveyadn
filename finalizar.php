@@ -20,39 +20,51 @@ $root = $xml->createElement('answers');
 $root = $xml->appendChild($root);
 
 $client = $xml->createElement('client');
-$client = $root->appendChild($client);
 
-$idC = $xml->createElement('field',$clienteEn->getIdClient());
-$idC = $idC->setAttribute('name', 'idClient');
-$idC = $client->appendChild($idC);
 
-$nameC = $xml->createElement('field',$clienteEn->getName());
-$nameC = $nameC->setAttribute('name', 'name');
-$nameC = $client->appendChild($nameC);
+$idC = $xml->createElement('field');
+$idCAtt = $xml->createAttribute('name');
 
-$emailC = $xml->createElement('field',$clienteEn->getEmail());
-$emailC = $emailC->setAttribute('name', 'email');
-$emailC = $client->appendChild($emailC);
+$idCText = $xml->createTextNode($clienteEn->getIdClient());//$idC->setAttribute('name', 'idClient');
+$idC->appendChild($idCText); 
+$client->appendChild($idC);
 
-$telC = $xml->createElement('field',$clienteEn->getTelephone());
-$telC = $telC->setAttribute('name', 'telephone');
-$telC = $client->appendChild($telC);
+$nameC = $xml->createElement('field');
+$nameCText = $xml->createTextNode($clienteEn->getName());// = $nameC->setAttribute('name', 'name
+$nameC->appendChild($nameCText); 
+$client->appendChild($nameC);
 
-$comC = $xml->createElement('field',$clienteEn->getCompania());
-$comC = $comC->setAttribute('name', 'compania');
-$comC = $client->appendChild($comC);
+$emailC = $xml->createElement('field');
+$emailCText = $xml->createTextNode($clienteEn->getEmail());// = $emailC->setAttribute('name', 'email');
+$emailC->appendChild($emailCText); 
+$client->appendChild($emailC);
 
-$apeC = $xml->createElement('field',$clienteEn->getApellidos());
-$apeC = $apeC->setAttribute('name', 'apellidos');
-$apeC = $client->appendChild($apeC);
+$telC = $xml->createElement('field');
+$telCText = $xml->createTextNode($clienteEn->getTelephone());// = $telC->setAttribute('name', 'telephone');
+$telC->appendChild($telCText); 
+$client->appendChild($telC);
 
-$pueC = $xml->createElement('field',$clienteEn->getPuesto());
-$pueC = $pueC->setAttribute('name', 'puesto');
-$pueC = $client->appendChild($pueC);
+$comC = $xml->createElement('field');
+$comCText = $xml->createTextNode($clienteEn->getCompania());// = $comC->setAttribute('name', 'compania');
+$comC->appendChild($comCText); 
+$client->appendChild($comC);
 
-$ubiC = $xml->createElement('field',$clienteEn->getUbicacion());
-$ubiC = $ubiC->setAttribute('name', 'ubicacion');
-$ubiC = $client->appendChild($ubiC);
+$apeC = $xml->createElement('field');
+$apeCText = $xml->createTextNode($clienteEn->getApellidos());// = $apeC->setAttribute('name', 'apellidos');
+$apeC->appendChild($apeCText); 
+$client->appendChild($apeC);
+
+$pueC = $xml->createElement('field');
+$pueCText = $xml->createTextNode($clienteEn->getPuesto());// = $pueC->setAttribute('name', 'puesto');
+$pueC->appendChild($pueCText); 
+$client->appendChild($pueC);
+
+$ubiC = $xml->createElement("field");
+$ubiCText = $xml->createTextNode($clienteEn->getUbicacion());// = $ubiC->setAttribute('name', 'ubicacion');
+$ubiC->appendChild($ubiCText); 
+$client->appendChild($ubiC);
+
+$root->appendChild($client);
 
 
 	$xml->formatOutput = true;
