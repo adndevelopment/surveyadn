@@ -14,7 +14,13 @@ and open the template in the editor.
             $(document).ready(function()
             {
                 $("div:hidden").fadeIn(3000);
+                
+                $("#frm").submit(function()
+                {
+                    $("div").fadeOut("slow");
+                });
             });
+            
         </script>
     </head>
     <body>
@@ -26,7 +32,7 @@ and open the template in the editor.
         if(!isset($_SESSION['cliente']))
             {
             echo '<center>
-                    <img src="img/acceso-denegado.jpg" alt="Acceso denegado"/>
+                    <img src="img/acceso-denegado.jpg" alt="American Data Networks"/>
                     </center>';
             }else{
         if($_POST['Enviar'])
@@ -36,8 +42,7 @@ and open the template in the editor.
             $pregT = $_SESSION['tipoPreguntas'];
             foreach($pregL as $respuesta)
                 {
-                echo $respuesta.'-valor:';
-                echo $_POST[$respuesta].'<br/>';
+                
                 if(empty($_POST[$respuesta]))
                         {
                             $completo = false;
@@ -55,13 +60,13 @@ and open the template in the editor.
                             $clienteEn->setApellidos($_POST['apellidos']);
                             $clienteEn->setPuesto($_POST['puesto']);
                             $clienteEn->setCompania($_POST['empresa']);
-                            $clienteEn->setTelephone($_POST['nombre']);
+                            $clienteEn->setTelephone($_POST['telefono']);
                             $clienteEn->setUbicacion($_POST['ubicacion']);
                             $_SESSION['cliente']= $clienteEn;
                     
                     foreach($pregL as $idRespuesta)
                         {
-                        echo 'entra for each';
+                        
                             //$nombre = explode("",$idRespuesta);
                                 
                         
@@ -70,9 +75,13 @@ and open the template in the editor.
                         
                             $respuestaEn = new RespuestaEn();
                             
-                            $respuestaEn->setIdQuestion($idRespuesta);
-                            
                             $respuestaEn->setValue($_POST[$idRespuesta]);
+                            if($pregT[$cont]=='range')
+                                {
+                                    $idRespuestaLista = explode('-', $idRespuesta);
+                                    $idRespuesta = $idRespuestaLista[0];
+                                }
+                            $respuestaEn->setIdQuestion($idRespuesta);
                             
                             if($pregT[$cont]){$respuestaEn->setComment($_POST['comment']);}else{$respuestaEn->setComment('');}
                           
@@ -80,7 +89,7 @@ and open the template in the editor.
                             
                             $respuestaEn->setIdClient($clienteEn->getIdClient());
                             $cont = $cont +1;
-                            echo 'hasta aqui';
+                            
                             //$listaRespuestas[]= $respuestaEn;
                             array_push($listaRespuestas, $respuestaEn);
                             echo $respuestaEn->getIdClient();
@@ -111,7 +120,7 @@ and open the template in the editor.
 
             <div id="top">
             </div> 
-            <form action="cuestionario.php" method="POST">
+            <form id="frm" action="cuestionario.php" method="POST">
                 
                 <table>
                 <tr>
@@ -132,6 +141,12 @@ and open the template in the editor.
                 <tr>
                     <td>
                         <p>Empresa o Entidad: </p></td><td><input id="infoPer" type="text" name="empresa"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <p>Telefono: </p></td><td><input id="infoPer" type="text" name="telefono"/>
                     </td>
                 </tr>
                 <tr>
@@ -196,7 +211,7 @@ and open the template in the editor.
                                 $prim = false;
                                 }
                             echo '<tr><td>';
-                            echo  '<preg>'.$opc['description'].'</td>';
+                            echo  utf8_encode('<preg>'.$opc['description'].'</td>');
                             $uno = true;
                             for ($i = 1; $i <= $opc['value']; $i++) {
                                 echo '<td>';
@@ -223,7 +238,7 @@ and open the template in the editor.
                 <center>
                     <br/>
                     <br/>
-                <input type="submit" name="Enviar" value="Enviar">
+                <input type="submit" id="enviar" name="Enviar" value="Enviar">
                 </center>
             </form>
 <?php 

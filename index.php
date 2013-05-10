@@ -44,7 +44,7 @@
             else
                 {
                     echo '<center>
-                    <img src="img/mensaje.jpg" alt="Survey under construction"/>
+                    <img src="img/mensaje.jpg" alt="American Data Networks"/>
                     </center>';
                 }
             }catch(Exception $ex)
@@ -56,7 +56,7 @@
             }else
                 {
                 echo '<center>
-                <img src="img/mensaje.jpg" alt="Survey under construction"/>
+                <img src="img/mensaje.jpg" alt="American Data Networks"/>
                 </center>';
                 }
             
