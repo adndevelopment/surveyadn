@@ -56,12 +56,12 @@ and open the template in the editor.
                     $listaRespuestas = array();
                     $clienteEn = $_SESSION['cliente'];
                     
-                    $clienteEn->setName($_POST['nombre']);
-                            $clienteEn->setApellidos($_POST['apellidos']);
-                            $clienteEn->setPuesto($_POST['puesto']);
-                            $clienteEn->setCompania($_POST['empresa']);
-                            $clienteEn->setTelephone($_POST['telefono']);
-                            $clienteEn->setUbicacion($_POST['ubicacion']);
+                    $clienteEn->setName("");
+                            $clienteEn->setApellidos("");
+                            $clienteEn->setPuesto("");
+                            $clienteEn->setCompania("");
+                            $clienteEn->setTelephone("");
+                            $clienteEn->setUbicacion("");
                             $_SESSION['cliente']= $clienteEn;
                     
                     foreach($pregL as $idRespuesta)
@@ -122,7 +122,7 @@ and open the template in the editor.
             </div> 
             <form id="frm" action="cuestionario.php" method="POST">
                 
-                <table>
+               <!-- <table>
                 <tr>
                     <td>
                         <p>Nombre: </p></td><td><input id="infoPer" type="text" name="nombre"/>
@@ -154,7 +154,7 @@ and open the template in the editor.
                         <p>Ubicacion: </p></td><td><input id="infoPer" type="text" name="ubicacion"/>
                     </td>
                 </tr>
-                </table>
+                </table> -->
 
                 <?php
                 

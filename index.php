@@ -17,7 +17,7 @@
                 $surveyAd = new SurveyAd();
                 $surveyAnt = $surveyAd->answerSQuestionSCheckAnswers($_GET['id'], 5);
                 $surAnt = mysql_fetch_array($surveyAnt);
-                echo $surAnt['idAnswer'];
+                
                 if ($surAnt['idAnswer'] == '') {
                     $info = $surveyAd->clientS($_GET['id']);
 
@@ -51,7 +51,7 @@
                     </center>';
                 }
             } catch (Exception $ex) {
-                echo $ex->getMessage();
+                echo $ex->getMessage().'-Error';
             }
             //exit;
             /*     echo '<center>
