@@ -83,7 +83,7 @@ and open the template in the editor.
                                 }
                             $respuestaEn->setIdQuestion($idRespuesta);
                             
-                            if($pregT[$cont]){$respuestaEn->setComment($_POST['comment']);}else{$respuestaEn->setComment('');}
+                            $respuestaEn->setComment($_POST['comment']);
                           
                             $respuestaEn->setIdTipo($pregT[$cont]);
                             
