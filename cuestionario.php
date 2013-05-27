@@ -68,7 +68,7 @@ and open the template in the editor.
                         {
                         
                             //$nombre = explode("",$idRespuesta);
-                                
+                             
                         
                             
                                 

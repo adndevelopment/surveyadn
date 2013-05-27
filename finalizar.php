@@ -108,8 +108,10 @@ foreach ($lista as $answer) {
     $idCQ->appendChild($idCQAtt);
     $answerX->appendChild($idCQ);
     
+    if($answer->getIdTipo()=='comment')
+    {$commQ = $xml->createElement('field',$answer->getValue());}else
+    {$commQ = $xml->createElement('field',$answer->getComment());}
     
-    $commQ = $xml->createElement('field',$answer->getComment());
     $commQAtt = $xml->createAttribute('name');
     $commQAtt->value='comment';
     $commQ->appendChild($commQAtt);
@@ -120,7 +122,10 @@ foreach ($lista as $answer) {
     $tipQAtt->value='answerType';
     $tipQ->appendChild($tipQAtt);
     $answerX->appendChild($tipQ);
-   
+    
+    
+    
+    
     $valQ = $xml->createElement('field',$answer->getValue());
     $valQAtt = $xml->createAttribute('name');
     $valQAtt->value='value';
